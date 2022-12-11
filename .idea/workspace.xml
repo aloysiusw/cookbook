@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="" />
+    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="test commit">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/net_sourceforge_htmlunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookbook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cookbook.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountcontrol/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountcontrol/AccountLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountcontrol/AccountRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountcontrol/AccountRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accountcontrol/PasswordControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountcontrol/PasswordControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webscraper/ConnectionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webscraper/UniqueScraper.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,18 +39,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.31.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/Downloads/Downloaded/htmlunit-2.67.0.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "inlay.hints"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Programming\cookbook" />
@@ -68,6 +83,14 @@
       <option name="presentableId" value="Default" />
       <updated>1670648275002</updated>
     </task>
+    <task id="LOCAL-00001" summary="test commit">
+      <created>1670660870184</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670660870184</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -80,5 +103,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="test commit" />
   </component>
 </project>
