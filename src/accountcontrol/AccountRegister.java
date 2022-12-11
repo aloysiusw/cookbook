@@ -1,4 +1,9 @@
 package accountcontrol;
 
-public class AccountRegister {
+public class AccountRegister
+{
+    private String userName;
+    private String userPassword;
+
+
 }
