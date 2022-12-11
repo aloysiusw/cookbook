@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="test commit">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/net_sourceforge_htmlunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" afterDir="false" />
+    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="changed db connection to a cycle to reduce repeat code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookbook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cookbook.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/accountcontrol/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountcontrol/AccountLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/accountcontrol/AccountRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountcontrol/AccountRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/accountcontrol/PasswordControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/accountcontrol/PasswordControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webscraper/ConnectionRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webscraper/UniqueScraper.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +83,28 @@
       <option name="project" value="LOCAL" />
       <updated>1670660870184</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="reworked driver program">
+      <created>1670754446068</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670754446068</updated>
+    </task>
+    <task id="LOCAL-00003" summary="initial scraper implementation">
+      <created>1670754473704</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670754473704</updated>
+    </task>
+    <task id="LOCAL-00004" summary="changed db connection to a cycle to reduce repeat code">
+      <created>1670756654876</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670756654876</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -106,6 +120,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="test commit" />
+    <MESSAGE value="reworked driver program" />
+    <MESSAGE value="initial scraper implementation" />
+    <MESSAGE value="changed db connection to a cycle to reduce repeat code" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed db connection to a cycle to reduce repeat code" />
   </component>
 </project>

@@ -1,22 +1,43 @@
 package accountcontrol;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class AccountLogin //might be obsolete if we simplify the flow
 {
-    /*
     private String userName;
     private String userPassword;
+    private Connection dbConn;
 
-    public void setInfo(String name, String password)
+    private String retrievedPassword;
+
+    public boolean loginAttempt(Connection dbConn, String name, String password)
     {
         this.userName = name;
+
         PasswordControl controlPass = new PasswordControl();
-        this.userPassword = controlPass.hashString(password);
+        this.userPassword = controlPass.encodePassword(password);
+        try
+        {
+            Statement stm = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String queryPass = "SELECT USER_NAME, USER_PASSWORD FROM USER_ACCOUNT WHERE USER_NAME = '" + name + "'";
+            ResultSet queryResult = stm.executeQuery(queryPass);
+            queryResult.first();
+            this.retrievedPassword = queryResult.getString("USER_PASSWORD");
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+        }
+        if (userPassword == retrievedPassword)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-    public String getPassword()
-    {
-        return this.userName, this.userPassword;
-    }
-     */
 }
