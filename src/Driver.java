@@ -21,6 +21,7 @@ public class Driver
         String user = "root";
         String pass = "pass";
         Connection dbConn = null;
+        boolean firstRun = true;
 
         Scanner input = new Scanner(System.in);
 
@@ -28,9 +29,9 @@ public class Driver
         {
             while (running)
             {
-                System.out.println("\nHere are the test functions.\n(0) Exit\n(1) Test database connection\n(2) Test query\n(3) Test password hashing\n(4) Test scraping\n");
+                System.out.println("\nHere are the test functions.\n(0) Exit\n(1) Connect/Disconnect Database\n(2) Test query\n(3) Test password hashing\n(4) Test scraping\n");
                 System.out.print("Input number: ");
-                String textInput = null;
+                String textInput;
                 String kbInput = input.next();
                 switch (kbInput)
                 {
@@ -39,24 +40,34 @@ public class Driver
                         running = false;
                         break;
                     case "1": //test connection
-                        dbConn = databaseControl.establishConnection(url, user, pass);
-                        if (!dbConn.isClosed())
+                        if(firstRun)
                         {
-                            System.out.println("Connection open: " + dbConn.toString());
+                            dbConn = databaseControl.establishConnection(url, user, pass);
+                            System.out.println("Connection: " + dbConn);
+                            firstRun=false;
                         }
                         else
                         {
-                            System.out.println("Connection is closed.");
+                            if (!dbConn.isClosed())
+                            {
+                                System.out.println("Closing connection.");
+                                dbConn.close();
+                            }
+                            else
+                            {
+                                dbConn = databaseControl.establishConnection(url, user, pass);
+                                System.out.println("Connection: " + dbConn);
+                            }
                         }
-                        dbConn.close(); //close after every connection just for efficiency
+
                         break;
                     case "2": //test query
-                        dbConn = databaseControl.establishConnection(url, user, pass);
+                        //dbConn = databaseControl.establishConnection(url, user, pass);
                         System.out.print("\nInput text string: ");
                         textInput = input.next();
                         String result = databaseQuery.queryTest(dbConn, textInput);
                         System.out.println("Result: " + result);
-                        dbConn.close();
+                        //dbConn.close();
                         break;
                     case "3": //test SHA-256
                         System.out.print("\nEnter password: ");
