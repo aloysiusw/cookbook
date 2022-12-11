@@ -21,13 +21,14 @@ body {
 }
 
 /* home or index page css  */
-.menu_btn a {
+/* .menu_btn a {
     color: black;
     position: absolute;
     font-size: 30px;
     left: 20px;
     top: 20px;
-}
+} */
+
 main {
     text-align: center;
 }
@@ -94,7 +95,6 @@ main button:active {
 /* Login page css  */
 .login_wrapper {
     background-image: url(../images/background_login.png);
-    background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
     padding: 50px 7%;
@@ -118,7 +118,8 @@ main button:active {
     padding: 50px 0px;
 }
 
-.login_form_wrapper form input[type="email"], .login_form_wrapper form input[type="password"] {
+.login_form_wrapper form input[type="email"],
+.login_form_wrapper form input[type="password"] {
     background: #9b976d;
     border: none;
     padding: 15px 50px;
@@ -155,7 +156,6 @@ main button:active {
 .signup_wrapper {
     background-image: url(../images/background_signup.png);
     background-position: center;
-    background-repeat: no-repeat;
     height: 100vh;
     padding: 50px 7%;
     text-align: center;
@@ -178,7 +178,9 @@ main button:active {
     padding: 50px 0px;
 }
 
-.signup_form_wrapper form input[type="email"], .signup_form_wrapper form input[type="password"], .signup_form_wrapper form input[type="tel"] {
+.signup_form_wrapper form input[type="email"],
+.signup_form_wrapper form input[type="password"],
+.signup_form_wrapper form input[type="tel"] {
     background: #9b976d;
     border: none;
     padding: 15px 50px;
@@ -209,3 +211,150 @@ main button:active {
     font-weight: bold;
     font-family: "mont-thin";
 }
+
+/* Recipes Css  */
+.recipes_wrapper {
+    background-image: url(../images/background_recipes.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding: 50px 7%;
+    text-align: center;
+
+}
+
+.recipes_wrapper .recipe_heading {
+    color: black;
+    font-size: 50px;
+    font-family: 'Noto Serif', serif;
+    margin-bottom: 150px;
+}
+
+.row {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.row .col {
+    flex: 1;
+}
+
+.recipes_wrapper .card h1 {
+    font-size: 20px;
+    color: #0000009a;
+    font-weight: bold;
+    font-family: "mont-thin";
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.recipes_wrapper .card {
+    border-radius: 25px;
+    padding: 10px 5px;
+    height: 200px;
+    width: 250px;
+}
+
+.recipe1 {
+    background-color: #f8c6ab;
+}
+
+.recipe2 {
+    background-color: #dcdac7;
+}
+
+.recipe3 {
+    background-color: #f7f5ba;
+}
+
+/* Search hsitory css  */
+.search_wrapper {
+    background-image: url(../images/background_search.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding: 50px 7%;
+    text-align: center;
+}
+
+
+
+.search_wrapper .search_heading {
+    color: black;
+    font-size: 50px;
+    font-family: 'Noto Serif', serif;
+    margin-bottom: 100px;
+}
+
+.search_wrapper .history_item {
+    font-size: 20px;
+    color: #0000009a;
+    font-weight: bold;
+    font-family: "mont-thin";
+    background-color: #f9f5b8;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 300px;
+    margin: auto;
+}
+
+.search_wrapper .history_item:hover {
+    background-color: rgba(252, 243, 125, 0.725)
+}
+
+/* sidenav css */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #dce7c6;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    display: block;
+    transition: 0.3s;
+    border: 2px solid black;
+    border-radius: 25px;
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 20px;
+    color: #0000009a;
+    font-weight: bold;
+    font-family: "mont-thin";
+  }
+  
+  .sidenav a:hover {
+    color: rgba(0, 0, 0, 0.589);
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
