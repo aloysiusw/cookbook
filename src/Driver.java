@@ -39,7 +39,7 @@ public class Driver
                         System.out.println("Closing program.");
                         running = false;
                         break;
-                    case "1": //test connection
+                    case "1": //cycle connection, connects first, then after it checks connection status and cycles
                         if(firstRun)
                         {
                             dbConn = databaseControl.establishConnection(url, user, pass);

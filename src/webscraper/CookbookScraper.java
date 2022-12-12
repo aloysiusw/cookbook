@@ -1,21 +1,20 @@
 package webscraper;
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.*;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class CookbookScraper
 {
     public void scrapeLink(String url)
     {
 
-        //todo: parse domain
+        //todo: parse domain, make individual ways to scrape, further testing needed
         try
         {
             //System.out.println("A");
+
             WebClient webClient = new WebClient(BrowserVersion.CHROME); //simulate Firefox
 
             webClient.getOptions().setCssEnabled(false);
@@ -24,6 +23,7 @@ public class CookbookScraper
             webClient.getOptions().setPrintContentOnFailingStatusCode(false);
             webClient.getOptions().setJavaScriptEnabled(false);
 
+            //test url: https://www.thespruceeats.com/classic-southern-fried-chicken-3056867
             HtmlPage htmlPage = webClient.getPage(url); //send request to link
 
             webClient.getCurrentWindow().getJobManager().removeAllJobs();
@@ -37,41 +37,51 @@ public class CookbookScraper
             String test = element.getTextContent();
             //String test = element.getAttribute("innerHTML");
             System.out.println(test);
-            */
-            boolean elementNotNull = true;
-            int elem=2;
-            ArrayList<String> recipe = new ArrayList<>();
-            while(elementNotNull)
-            {
-                String xPath = "//*[@id=\"mntl-sc-block_3-0-" + elem + "\"]";
-                DomElement element = htmlPage.getFirstByXPath(xPath); //use xpath
-                if (element != null)
-                {
-                    String test = element.getTextContent();
-                    //System.out.println(test);
-                    //String test = element.getAttribute("innerHTML");
-                    recipe.add(test);
-                }
-                else
-                {
-                    elementNotNull = false;
-                }
-                elem=elem+5;
-            }
-            int listLength = recipe.size();
-            for(int i=0;i<listLength;i++)
-            {
-                System.out.print(i+1 + ") " + recipe.get(i) + "\n");
-            }
             /*
-            List<HtmlAnchor> links = htmlPage.getAnchors();
-            for (HtmlAnchor link : links)
+                List<HtmlAnchor> links = htmlPage.getAnchors();
+                for (HtmlAnchor link : links)
+                {
+                    String href = link.getHrefAttribute();
+                    System.out.println("C");
+                    System.out.println("Link: " + href);
+                }
+              */
+            boolean elementNotNull = true;
+
+            String urlDomain = StringUtils.substringBetween(url, "https://www.", ".");
+            System.out.println("Domain:" + urlDomain);
+
+            switch(urlDomain)
             {
-                String href = link.getHrefAttribute();
-                System.out.println("C");
-                System.out.println("Link: " + href);
+                case "thespruceeats":
+                    int elem = 2;
+                    ArrayList<String> recipe = new ArrayList<>();
+                    while (elementNotNull)
+                    {
+                        String xPath = "//*[@id=\"mntl-sc-block_3-0-" + elem + "\"]";
+                        DomElement element = htmlPage.getFirstByXPath(xPath); //use xpath
+                        if (element != null)
+                        {
+                            String test = element.getTextContent();
+                            //System.out.println(test);
+                            //String test = element.getAttribute("innerHTML");
+                            recipe.add(test);
+                        }
+                        else
+                        {
+                            elementNotNull = false;
+                        }
+                        elem = elem + 5;
+                    }
+                    int listLength = recipe.size();
+                    for (int i = 0; i < listLength; i++)
+                    {
+                        System.out.print(i + 1 + ") " + recipe.get(i) + "\n");
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid input (domain not found)");
             }
-            */
         }
         catch(Exception e)
         {
