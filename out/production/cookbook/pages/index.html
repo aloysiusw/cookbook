@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <title>CookBook</title>
+</head>
+
+<body>
+    <div class="menu_btn">
+        <div id="mySidenav" class="sidenav">
+            <span class="closebtn" onclick="closeNav()">&times;</span>
+            <a href="#">By Meal Type</a>
+            <a href="#">By Cuisine</a>
+            <a href="#">By Occasion</a>
+            <br><br><br>
+            <a href="recipes.html">My Recipes</a>
+            <a href="search_history.html">Search History</a>
+            <a href="index.html">My Account</a>
+        </div>
+
+
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    </div>
+
+
+
+
+
+
+
+
+
+    <main>
+        <img src="images/logo.png" alt="logo">
+        <p>Have all your favorite recipes at your fingertips with CookBook!</p>
+        <button>What would you like to cook? &nbsp; <i class="fa fa-search"></i></button>
+    </main>
+
+    <div class="buttons_wrapper">
+        <a href="signup.html" class="button">Sign up</a>
+        <a href="login.html" class="button">Log in</a>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+
+</html>

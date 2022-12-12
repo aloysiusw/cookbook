@@ -1,4 +1,5 @@
 package webscraper;
+
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.*;
 import org.apache.commons.lang3.StringUtils;
@@ -9,8 +10,11 @@ public class CookbookScraper
 {
     public void scrapeLink(String url)
     {
-
-        //todo: parse domain, make individual ways to scrape, further testing needed
+        /*todo:
+            1. parse domain
+            2. make individual ways to scrape (1/3)
+            3. more and more testing
+         */
         try
         {
             //System.out.println("A");
