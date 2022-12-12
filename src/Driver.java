@@ -76,7 +76,7 @@ public class Driver
                         System.out.println("Encoded hexadecimal: " + passwordEncoded);
                         break;
                     case "4": //test scrape
-                        String recipeLink = "https://www.thespruceeats.com/classic-southern-fried-chicken-3056867";
+                        String recipeLink = "https://www.thespruceeats.com/toasted-pasta-soup-recipe-6823245";
                         cookbookScraper.scrapeLink(recipeLink);
                         break;
                     default:

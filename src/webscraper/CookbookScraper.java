@@ -54,31 +54,39 @@ public class CookbookScraper
             switch(urlDomain)
             {
                 case "thespruceeats":
-                    int elem = 2;
-                    ArrayList<String> recipe = new ArrayList<>();
-                    while (elementNotNull)
+                    if(htmlPage.getTitleText().toLowerCase().contains("recipe")) //check if title contains recipe, kinda basic way of doing it
                     {
-                        String xPath = "//*[@id=\"mntl-sc-block_3-0-" + elem + "\"]";
-                        DomElement element = htmlPage.getFirstByXPath(xPath); //use xpath
-                        if (element != null)
+                        int elem = 2;
+                        ArrayList<String> recipe = new ArrayList<>();
+                        while (elementNotNull)
                         {
-                            String test = element.getTextContent();
-                            //System.out.println(test);
-                            //String test = element.getAttribute("innerHTML");
-                            recipe.add(test);
+                            String xPath = "//*[@id=\"mntl-sc-block_3-0-" + elem + "\"]";
+                            DomElement element = htmlPage.getFirstByXPath(xPath); //use xpath
+                            if (element != null)
+                            {
+                                String test = element.getTextContent();
+                                //System.out.println(test);
+                                //String test = element.getAttribute("innerHTML");
+                                recipe.add(test);
+                            }
+                            else
+                            {
+                                elementNotNull = false;
+                            }
+                            elem = elem + 5;
                         }
-                        else
+                        int listLength = recipe.size();
+                        for (int i = 0; i < listLength; i++)
                         {
-                            elementNotNull = false;
+                            System.out.print(i + 1 + ") " + recipe.get(i) + "\n");
                         }
-                        elem = elem + 5;
+                        break;
                     }
-                    int listLength = recipe.size();
-                    for (int i = 0; i < listLength; i++)
+                    else
                     {
-                        System.out.print(i + 1 + ") " + recipe.get(i) + "\n");
+                        System.out.println("Domain does not seem to be a recipe.");
+                        break;
                     }
-                    break;
                 default:
                     System.out.println("Invalid input (domain not found)");
             }
