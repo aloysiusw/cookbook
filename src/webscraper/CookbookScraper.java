@@ -84,13 +84,12 @@ public class CookbookScraper
                         {
                             System.out.print(i + 1 + ") " + recipe.get(i) + "\n");
                         }
-                        break;
                     }
                     else
                     {
                         System.out.println("Domain does not seem to be a recipe.");
-                        break;
                     }
+                    break;
                 default:
                     System.out.println("Invalid input (domain not found)");
             }
