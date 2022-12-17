@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="cookbook:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="updated git setting">
+    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="updated to ruchira's latest files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +19,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -51,7 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "D:/Downloads/Downloaded/htmlunit-2.67.0.jar",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "inlay.hints"
@@ -127,28 +119,7 @@
       <option name="project" value="LOCAL" />
       <updated>1670756894648</updated>
     </task>
-    <task id="LOCAL-00007" summary="added string parsing and switcher">
-      <created>1670857441762</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1670857441762</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added simple checker for recipe">
-      <created>1670858247093</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1670858247093</updated>
-    </task>
-    <task id="LOCAL-00009" summary="updated git setting">
-      <created>1670858767553</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1670858767553</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,9 +141,6 @@
     <MESSAGE value="changed db connection to a cycle to reduce repeat code" />
     <MESSAGE value="init login framework" />
     <MESSAGE value="updated to ruchira's latest files" />
-    <MESSAGE value="added string parsing and switcher" />
-    <MESSAGE value="added simple checker for recipe" />
-    <MESSAGE value="updated git setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated git setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated to ruchira's latest files" />
   </component>
 </project>

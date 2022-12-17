@@ -2,12 +2,12 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
+    <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql-connector-j-8.0.31" level="project" />
     <orderEntry type="library" name="net.sourceforge.htmlunit" level="project" />
+    <orderEntry type="library" name="jakarta.servlet.api" level="project" />
+    <orderEntry type="library" name="springframework.spring.webmvc" level="project" />
   </component>
 </module>
