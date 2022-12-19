@@ -1,4 +1,4 @@
-package accountcontrol;
+package cookbook.accountcontrol;
 
 public class AccountRegister
 {

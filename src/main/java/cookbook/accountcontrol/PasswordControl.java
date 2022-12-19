@@ -1,5 +1,6 @@
-package accountcontrol;
+package cookbook.accountcontrol;
 
+import java.io.Console;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
@@ -7,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 public class PasswordControl
 {
     private String hexadecimalString;
+    static String enteredPassword;
+    private String encodedPassword;
     public String encodePassword(String userPassword)
     {
         MessageDigest digest = null;
@@ -34,5 +37,12 @@ public class PasswordControl
             hexString.append(hex);
         }
         this.hexadecimalString = hexString.toString();
+    }
+    public String inputPassword()
+    {
+        Console console = System.console();
+        enteredPassword = new String(console.readPassword("Password: "));
+        encodedPassword = encodePassword(enteredPassword);
+        return encodedPassword;
     }
 }

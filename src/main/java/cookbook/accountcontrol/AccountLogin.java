@@ -1,5 +1,4 @@
-package accountcontrol;
-import java.security.NoSuchAlgorithmException;
+package cookbook.accountcontrol;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

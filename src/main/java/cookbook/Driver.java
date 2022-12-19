@@ -1,8 +1,10 @@
-import dbconnection.DatabaseControl;
-import dbconnection.DatabaseQuery;
+package cookbook;
 
-import accountcontrol.PasswordControl;
-import webscraper.CookbookScraper;
+import cookbook.dbconnection.DatabaseControl;
+import cookbook.dbconnection.DatabaseQuery;
+
+import cookbook.accountcontrol.PasswordControl;
+import cookbook.webscraper.CookbookScraper;
 
 import java.util.Scanner;
 
@@ -20,6 +22,7 @@ public class Driver
         String url = "localhost:3306/cookbook";
         String user = "root";
         String pass = "pass";
+
         Connection dbConn = null;
         boolean firstRun = true;
 

@@ -1,4 +1,4 @@
-package dbconnection;
+package cookbook.dbconnection;
 import java.sql.*;
 public class DatabaseQuery
 {

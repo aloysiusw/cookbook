@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="updated to ruchira's latest files">
+    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="testing refactored structure for webapp">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookbook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cookbook.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/Driver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/accountcontrol/AccountLogin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/accountcontrol/AccountRegister.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/accountcontrol/PasswordControl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/dbconnection/DatabaseControl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/dbconnection/DatabaseQuery.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/webscraper/CookbookScraper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/accountcontrol/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/accountcontrol/AccountRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/accountcontrol/PasswordControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dbconnection/DatabaseControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/dbconnection/DatabaseControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dbconnection/DatabaseQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/dbconnection/DatabaseQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webscraper/CookbookScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/webscraper/CookbookScraper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +37,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ed794fb7-b709-40a2-a591-488ef064e489" />
+        <option name="url" value="https://github.com/aloysiusw/cookbook.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,11 +78,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/Downloads/Downloaded/htmlunit-2.67.0.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "inlay.hints"
+    "settings.editor.selected.configurable": "inlay.hints",
+    "spring.configuration.checksum": "d41d8cd98f00b204e9800998ecf8427e",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -76,6 +119,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670648275002</updated>
+      <workItem from="1671433493457" duration="6939000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1670660870184</created>
@@ -119,8 +163,18 @@
       <option name="project" value="LOCAL" />
       <updated>1670756894648</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="testing refactored structure for webapp">
+      <created>1671249702289</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671249702289</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -141,6 +195,7 @@
     <MESSAGE value="changed db connection to a cycle to reduce repeat code" />
     <MESSAGE value="init login framework" />
     <MESSAGE value="updated to ruchira's latest files" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated to ruchira's latest files" />
+    <MESSAGE value="testing refactored structure for webapp" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing refactored structure for webapp" />
   </component>
 </project>
