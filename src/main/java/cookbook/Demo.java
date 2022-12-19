@@ -18,7 +18,6 @@ public class Demo
         3. Driver program with read and write control for the database, with input sanitation
         4. Version control integration
         5. Cloud database hosting
-
      */
     public static void main(String[]args)
     {
