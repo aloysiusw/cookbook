@@ -11,32 +11,40 @@ public class AccountLogin //might be obsolete if we simplify the flow
     private Connection dbConn;
 
     private String retrievedPassword;
+    private String retrievedUsername;
 
-    public boolean loginAttempt(Connection dbConn, String name, String password)
+    public int loginAttempt(Connection dbConn, String name, String password)
     {
         this.userName = name;
-
-        PasswordControl controlPass = new PasswordControl();
-        this.userPassword = controlPass.encodePassword(password);
+        this.userPassword = password;
         try
         {
             Statement stm = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             String queryPass = "SELECT USER_NAME, USER_PASSWORD FROM USER_ACCOUNT WHERE USER_NAME = '" + name + "'";
             ResultSet queryResult = stm.executeQuery(queryPass);
             queryResult.first();
+            this.retrievedUsername = queryResult.getString("USER_NAME");
             this.retrievedPassword = queryResult.getString("USER_PASSWORD");
         }
         catch (SQLException e)
         {
             System.out.println(e);
         }
-        if (userPassword == retrievedPassword)
+        if(retrievedPassword==null)
         {
-            return true;
+            return 1;
+        }
+        else if (userPassword != retrievedPassword)
+        {
+            return 2;
+        }
+        else if(userPassword.equals(retrievedPassword) && userName.equalsIgnoreCase(retrievedUsername))
+        {
+            return 3;
         }
         else
         {
-            return false;
+            return 0;
         }
     }
 }

@@ -1,10 +1,12 @@
 package cookbook;
 
+import cookbook.accountcontrol.AccountLogin;
 import cookbook.webscraper.CookbookScraper;
 import cookbook.accountcontrol.PasswordControl;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.sql.Connection;
 
 public class Demo
 {
@@ -13,9 +15,11 @@ public class Demo
     {
         CookbookScraper cookbookScraper = new CookbookScraper();
         PasswordControl passwordControl = new PasswordControl();
+        AccountLogin accountLogin = new AccountLogin();
 
         ArrayList recipe = new ArrayList<>();
 
+        //stage control
         boolean running = true;
         boolean stageOne = true; //recipe scraper, input link
         boolean stageTwo = false; //logging in and sign up
@@ -24,9 +28,14 @@ public class Demo
         boolean loggedIn = false;
         boolean savedRecipe = false;
 
+        //database connection control
+        Connection dbConnection = null;
+        String url = "localhost:3306/cookbook";
+        String user = "root";
+        String pass = "pass";
+
         String userName;
         String userPassword;
-        boolean userVerified = false;
 
         Scanner input = new Scanner(System.in);
         String kbInput;
@@ -79,7 +88,7 @@ public class Demo
                     System.out.println("If you would like to retrieve your existing recipes or save them, please log in. If you do not have an account, feel free to make one.\n");
                     System.out.println("Options:\n(0) Back\n(1) Log in\n(2) Sign up");
 
-                    System.out.print("Input: ");
+                    System.out.print("\nInput: ");
                     String optInput = input.next();
                     switch (optInput)
                     {
@@ -89,17 +98,43 @@ public class Demo
                             break;
                         case("1"):
                             boolean attemptingLogin = true;
-                            System.out.println("You have opted to log in.\nInput '0' to go cancel.");
+                            System.out.println("\nYou have opted to log in.\nInput '0' to cancel.");
                             while(attemptingLogin)
                             {
                                 System.out.print("\nUsername: ");
                                 userName = input.next();
-                                System.out.println("Username: " + userName);
-                                userPassword = passwordControl.inputPassword();
-                                System.out.println("Password: " + userPassword);
+                                if(userName=="0")
+                                {
+                                    attemptingLogin=false;
+                                }
+                                else
+                                {
+                                    //System.out.println("Username: " + userName);
+                                    userPassword = passwordControl.inputPassword();
+                                    //System.out.println("Password: " + userPassword);
+
+                                    int loginStatus = accountLogin.loginAttempt(dbConnection, userName, userPassword);
+                                    switch (loginStatus)
+                                    {
+                                        case(0):
+                                            System.out.println("Error: unknown error occurred.\nTry again.");
+                                            break;
+                                        case(1): //user not found
+                                            System.out.println("Error: username not found.\nTry again.");
+                                            break;
+                                        case(2):
+                                            System.out.println("Error: password is incorrect.\nTry again.");
+                                            break;
+                                        case(3):
+                                            System.out.println("Success.");
+                                            attemptingLogin=false;
+                                            break;
+                                    }
+                                }
                             }
-
-
+                            break;
+                        default:
+                            System.out.println("Error: invalid input. Try again.\n");
                     }
                 }
             }

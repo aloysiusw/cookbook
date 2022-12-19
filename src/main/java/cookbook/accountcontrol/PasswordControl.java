@@ -4,6 +4,7 @@ import java.io.Console;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class PasswordControl
 {
@@ -40,8 +41,12 @@ public class PasswordControl
     }
     public String inputPassword()
     {
+        /* Console doesnt work for some reason in IDE
         Console console = System.console();
         enteredPassword = new String(console.readPassword("Password: "));
+         */
+        Scanner passInput = new Scanner(System.in);
+        enteredPassword = passInput.next();
         encodedPassword = encodePassword(enteredPassword);
         return encodedPassword;
     }

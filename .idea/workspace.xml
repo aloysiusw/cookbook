@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="cookbook:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="testing refactored structure for webapp">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" afterDir="false" />
+    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="added demo function, refined scraper, refined pass control">
+      <change afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cookbook_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cookbook_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookbook.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cookbook.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/Driver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/accountcontrol/AccountLogin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/accountcontrol/AccountRegister.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/accountcontrol/PasswordControl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/dbconnection/DatabaseControl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/dbconnection/DatabaseQuery.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/webscraper/CookbookScraper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/accountcontrol/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/accountcontrol/AccountRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/accountcontrol/PasswordControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dbconnection/DatabaseControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/dbconnection/DatabaseControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dbconnection/DatabaseQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/dbconnection/DatabaseQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/webscraper/CookbookScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/webscraper/CookbookScraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cookbook_jar/cookbook.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cookbook_jar/cookbook.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cookbook/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/fonts/mont-thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/NotoSerif-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_recipes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_signup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/logo.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe2.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/recipes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/search_history.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +98,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "inlay.hints",
@@ -119,7 +133,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670648275002</updated>
-      <workItem from="1671433493457" duration="6939000" />
+      <workItem from="1671433493457" duration="9411000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1670660870184</created>
@@ -170,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671249702289</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added demo function, refined scraper, refined pass control">
+      <created>1671440860866</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671440860866</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +217,7 @@
     <MESSAGE value="init login framework" />
     <MESSAGE value="updated to ruchira's latest files" />
     <MESSAGE value="testing refactored structure for webapp" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing refactored structure for webapp" />
+    <MESSAGE value="added demo function, refined scraper, refined pass control" />
+    <option name="LAST_COMMIT_MESSAGE" value="added demo function, refined scraper, refined pass control" />
   </component>
 </project>
