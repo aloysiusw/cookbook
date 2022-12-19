@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="cookbook:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="updated to ruchira's latest files">
+    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="added demo function, refined scraper, refined pass control">
+      <change afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/cookbook_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cookbook_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/webscraper/CookbookScraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/cookbook_jar/cookbook.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cookbook_jar/cookbook.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cookbook/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/fonts/mont-thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/NotoSerif-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_recipes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_signup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/logo.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe2.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/recipes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/search_history.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +51,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ed794fb7-b709-40a2-a591-488ef064e489" />
+        <option name="url" value="https://github.com/aloysiusw/cookbook.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,11 +92,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/Downloads/Downloaded/htmlunit-2.67.0.jar",
-    "project.structure.last.edited": "Libraries",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "inlay.hints"
+    "settings.editor.selected.configurable": "inlay.hints",
+    "spring.configuration.checksum": "d41d8cd98f00b204e9800998ecf8427e",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -76,6 +133,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670648275002</updated>
+      <workItem from="1671433493457" duration="9411000" />
     </task>
     <task id="LOCAL-00001" summary="test commit">
       <created>1670660870184</created>
@@ -119,8 +177,25 @@
       <option name="project" value="LOCAL" />
       <updated>1670756894648</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="testing refactored structure for webapp">
+      <created>1671249702289</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671249702289</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added demo function, refined scraper, refined pass control">
+      <created>1671440860866</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671440860866</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -141,6 +216,8 @@
     <MESSAGE value="changed db connection to a cycle to reduce repeat code" />
     <MESSAGE value="init login framework" />
     <MESSAGE value="updated to ruchira's latest files" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated to ruchira's latest files" />
+    <MESSAGE value="testing refactored structure for webapp" />
+    <MESSAGE value="added demo function, refined scraper, refined pass control" />
+    <option name="LAST_COMMIT_MESSAGE" value="added demo function, refined scraper, refined pass control" />
   </component>
 </project>
