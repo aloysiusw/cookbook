@@ -1,20 +1,31 @@
 package cookbook;
 
 import cookbook.accountcontrol.AccountLogin;
+import cookbook.dbconnection.DatabaseControl;
 import cookbook.webscraper.CookbookScraper;
 import cookbook.accountcontrol.PasswordControl;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.sql.Connection;
 
 public class Demo
 {
+    /*todo (must haves):
+        1. Functional web scraper that works on >=3 different websites
+        2. Database for recipe storage and unique ID for each recipe
+        3. Driver program with read and write control for the database, with input sanitation
+        4. Version control integration
+        5. Cloud database hosting
 
+     */
     public static void main(String[]args)
     {
         CookbookScraper cookbookScraper = new CookbookScraper();
         PasswordControl passwordControl = new PasswordControl();
+        DatabaseControl databaseControl = new DatabaseControl();
+
         AccountLogin accountLogin = new AccountLogin();
 
         ArrayList recipe = new ArrayList<>();
@@ -99,11 +110,19 @@ public class Demo
                         case("1"):
                             boolean attemptingLogin = true;
                             System.out.println("\nYou have opted to log in.\nInput '0' to cancel.");
+                            try
+                            {
+                                dbConnection = databaseControl.establishConnection(url, user, pass);
+                            }
+                            catch (SQLException e)
+                            {
+                                System.out.println("Error: " + e);
+                            }
                             while(attemptingLogin)
                             {
                                 System.out.print("\nUsername: ");
                                 userName = input.next();
-                                if(userName=="0")
+                                if(userName.equals("0"))
                                 {
                                     attemptingLogin=false;
                                 }

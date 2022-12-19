@@ -9,34 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="added demo function, refined scraper, refined pass control">
-      <change afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="9de4e68e-031b-48ca-9162-a5185784989a" name="Changes" comment="updated to ruchira's latest files">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/cookbook_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/cookbook_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/cookbook_jar/cookbook.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/cookbook_jar/cookbook.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cookbook/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/fonts/mont-thin.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/NotoSerif-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_recipes.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_search.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/background_signup.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/logo.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe1.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe2.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/images/recipe3.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/recipes.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/search_history.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cookbook/pages/signup.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/AccountLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/accountcontrol/PasswordControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cookbook/webscraper/CookbookScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cookbook/webscraper/CookbookScraper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,11 +36,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -98,7 +76,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "inlay.hints",
