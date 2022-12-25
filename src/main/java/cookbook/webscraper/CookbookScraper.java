@@ -39,7 +39,7 @@ public class CookbookScraper
             webClient.getCurrentWindow().getJobManager().removeAllJobs();
             webClient.close();
             this.recipeTitle = htmlPage.getTitleText();
-            System.out.println("Title: " + this.recipeTitle);
+            System.out.println("\nTitle: " + this.recipeTitle);
             //System.out.println(htmlPage.asXml());
             /*
             String xPath = "//*[@id=\"mntl-sc-block_3-0-2\"]";
@@ -89,11 +89,6 @@ public class CookbookScraper
                             }
                             elem = elem + 5;
                         }
-                        listLength = this.recipe.size();
-                        for (int i = 0; i < listLength; i++)
-                        {
-                            System.out.print(i + 1 + ") " + this.recipe.get(i) + "\n");
-                        }
                     }
                     else
                     {
@@ -119,11 +114,6 @@ public class CookbookScraper
                         }
                         elem++;
                     }
-                    listLength = this.recipe.size();
-                    for (int i = 0; i < listLength; i++)
-                    {
-                        System.out.print(i + 1 + ") " + this.recipe.get(i) + "\n");
-                    }
                     break;
                 case "playfulcooking": //this one has different structures for its recipe, requires unique ID
                     elem = 1;
@@ -141,7 +131,7 @@ public class CookbookScraper
 
                         DomElement testElem = htmlPage.getFirstByXPath("//*[@data-recipe-id]");
                         String valueID = testElem.getAttribute("data-recipe-id");
-                        System.out.println(valueID); //this took so much time
+                        //System.out.println(valueID); //this took so much time
                         String xPath = "//*[@id=\"wprm-recipe-" + valueID + "-step-0-" + elem + "\"]";
                         DomElement element = htmlPage.getFirstByXPath(xPath); //use xpath
                         //*[@id="wprm-recipe-23545-step-0-0"]
@@ -160,11 +150,6 @@ public class CookbookScraper
                         }
                         elem++;
                     }
-                    listLength = this.recipe.size();
-                    for (int i = 0; i < listLength; i++)
-                    {
-                        System.out.print(i + 1 + ") " + this.recipe.get(i) + "\n");
-                    }
                     break;
                 default:
                     System.out.println("Error: invalid input (domain not found or not in the list.)");
@@ -173,6 +158,15 @@ public class CookbookScraper
         catch(Exception e)
         {
             System.out.println("Exception: " + e);
+        }
+        if(!recipe.isEmpty())
+        {
+            System.out.println("\nRecipe:");
+            listLength = this.recipe.size();
+            for (int i = 0; i < listLength; i++)
+            {
+                System.out.print(i + 1 + ") " + this.recipe.get(i) + "\n");
+            }
         }
         return recipe;
     }

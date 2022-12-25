@@ -41,12 +41,19 @@ public class PasswordControl
     }
     public String inputPassword()
     {
-        /* Console doesnt work for some reason in IDE
+        //todo: switch the commented out block when building artifacts
+        //Console doesn't work for some reason in IDE
+
         Console console = System.console();
-        enteredPassword = new String(console.readPassword("Password: "));
-         */
+        System.out.println("\nPlease input your password.\n");
+        enteredPassword = new String(console.readPassword("Input: "));
+
+        /*
         Scanner passInput = new Scanner(System.in);
+        System.out.print("\nPlease input your password.\nInput: ");
         enteredPassword = passInput.next();
+        */
+
         encodedPassword = encodePassword(enteredPassword);
         return encodedPassword;
     }

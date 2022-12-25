@@ -12,19 +12,26 @@ public class AccountLogin //might be obsolete if we simplify the flow
 
     private String retrievedPassword;
     private String retrievedUsername;
+    private String retrievedType;
 
-    public int loginAttempt(Connection dbConn, String name, String password)
+    public String loginAttempt(Connection dbConn, String name, String password)
     {
         this.userName = name;
         this.userPassword = password;
         try
         {
             Statement stm = dbConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            String queryPass = "SELECT USER_NAME, USER_PASSWORD FROM USER_ACCOUNT WHERE USER_NAME = '" + name + "'";
+            String queryPass = "SELECT * FROM USER_ACCOUNT WHERE USER_NAME = '" + name + "'";
             ResultSet queryResult = stm.executeQuery(queryPass);
-            queryResult.first();
-            this.retrievedUsername = queryResult.getString("USER_NAME");
-            this.retrievedPassword = queryResult.getString("USER_PASSWORD");
+            if(queryResult.next()) //check if entry is empty, if it is then exit
+            {
+                queryResult.first();
+                this.retrievedUsername = queryResult.getString("USER_NAME");
+                this.retrievedPassword = queryResult.getString("USER_PASSWORD");
+                this.retrievedType = queryResult.getString("USER_TYPE");
+                //System.out.println(password);
+                //System.out.println(retrievedPassword);
+            }
         }
         catch (SQLException e)
         {
@@ -32,19 +39,19 @@ public class AccountLogin //might be obsolete if we simplify the flow
         }
         if(retrievedPassword==null)
         {
-            return 1;
+            return "USER_NOT_FOUND";
         }
-        else if (userPassword != retrievedPassword)
+        else if (!userPassword.equals(retrievedPassword))
         {
-            return 2;
+            return "PASSWORD_INCORRECT";
         }
         else if(userPassword.equals(retrievedPassword) && userName.equalsIgnoreCase(retrievedUsername))
         {
-            return 3;
+            return retrievedType;
         }
         else
         {
-            return 0;
+            return "UNKNOWN";
         }
     }
 }

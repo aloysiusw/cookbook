@@ -1,11 +1,13 @@
 package cookbook;
 
 import cookbook.accountcontrol.AccountLogin;
+import cookbook.accountcontrol.AccountRegister;
 import cookbook.dbconnection.DatabaseControl;
 import cookbook.webscraper.CookbookScraper;
 import cookbook.accountcontrol.PasswordControl;
 
 import java.sql.SQLException;
+import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.sql.Connection;
@@ -13,11 +15,13 @@ import java.sql.Connection;
 public class Demo
 {
     /*todo (must haves):
-        1. Functional web scraper that works on >=3 different websites
+        1. Functional web scraper that works on >=3 different websites (ok)
         2. Database for recipe storage and unique ID for each recipe
-        3. Driver program with read and write control for the database, with input sanitation
-        4. Version control integration
+        3. Driver program with read and write control for the database, with input sanitation (ok)
+        4. Version control integration (ok)
         5. Cloud database hosting
+        6. Configure db in app (ok)
+        7. Admin access
      */
     public static void main(String[]args)
     {
@@ -26,6 +30,7 @@ public class Demo
         DatabaseControl databaseControl = new DatabaseControl();
 
         AccountLogin accountLogin = new AccountLogin();
+        AccountRegister accountRegister = new AccountRegister();
 
         ArrayList recipe = new ArrayList<>();
 
@@ -39,18 +44,19 @@ public class Demo
         boolean savedRecipe = false;
 
         //database connection control
-        Connection dbConnection = null;
-        String url = "localhost:3306/cookbook";
-        String user = "root";
-        String pass = "pass";
+        Connection dbConnection;
+        String dbURL = "localhost:3306/cookbook";
+        String dbUser = "root";
+        String dbPass = "pass";
 
         String userName;
         String userPassword;
+        String accountType;
 
         Scanner input = new Scanner(System.in);
         String kbInput;
 
-        System.out.println("Welcome to Cookbook.");
+        Demo.printIntro();
         do
         {
             while(stageOne)
@@ -96,7 +102,7 @@ public class Demo
                 if(!loggedIn)
                 {
                     System.out.println("If you would like to retrieve your existing recipes or save them, please log in. If you do not have an account, feel free to make one.\n");
-                    System.out.println("Options:\n(0) Back\n(1) Log in\n(2) Sign up");
+                    System.out.println("Options:\n(0) Back\n(1) Log in\n(2) Sign up\n(-) Configure database connection");
 
                     System.out.print("\nInput: ");
                     String optInput = input.next();
@@ -111,43 +117,120 @@ public class Demo
                             System.out.println("\nYou have opted to log in.\nInput '0' to cancel.");
                             try
                             {
-                                dbConnection = databaseControl.establishConnection(url, user, pass);
+                                dbConnection = databaseControl.establishConnection(dbURL, dbUser, dbPass);
+                                while(attemptingLogin)
+                                {
+                                    System.out.print("\nPlease input your username.\nInput: ");
+                                    userName = input.next();
+                                    if(userName.equals("0"))
+                                    {
+                                        attemptingLogin=false;
+                                    }
+                                    else
+                                    {
+                                        //System.out.println("Username: " + userName);
+                                        userPassword = passwordControl.inputPassword();
+                                        //System.out.println("Password: " + userPassword);
+                                        String loginStatus = accountLogin.loginAttempt(dbConnection, userName, userPassword);
+                                        switch (loginStatus)
+                                        {
+                                            case("UNKNOWN"):
+                                                System.out.println("Error: unknown error occurred.\nTry again.");
+                                                break;
+                                            case("USER_NOT_FOUND"): //user not found
+                                                System.out.println("Error: username not found.\nTry again.");
+                                                break;
+                                            case("PASSWORD_INCORRECT"):
+                                                System.out.println("Error: password is incorrect.\nTry again.");
+                                                break;
+                                            case("ADMIN"):
+                                            case("USER"):
+                                                accountType = loginStatus;
+                                                System.out.println("Success.");
+                                                attemptingLogin=false;
+                                                break;
+                                        }
+                                    }
+                                }
+                                dbConnection.close();
                             }
                             catch (SQLException e)
                             {
                                 System.out.println("Error: " + e);
                             }
-                            while(attemptingLogin)
+                            break;
+                        case("2"):
+                            boolean attemptingRegister = true;
+                            System.out.println("\nYou have opted to register.\nInput '0' to cancel.");
+                            try
                             {
-                                System.out.print("\nUsername: ");
-                                userName = input.next();
-                                if(userName.equals("0"))
+                                dbConnection = databaseControl.establishConnection(dbURL, dbUser, dbPass);
+                                while(attemptingRegister)
                                 {
-                                    attemptingLogin=false;
+                                    System.out.print("\nPlease input your username.\nInput: ");
+                                    userName = input.next();
+                                    if(userName.equals("0"))
+                                    {
+                                        attemptingRegister=false;
+                                    }
+                                    else
+                                    {
+                                        //System.out.println("Username: " + userName);
+                                        userPassword = passwordControl.inputPassword();
+                                        //System.out.println("Password: " + userPassword);
+                                        String registerStatus = accountRegister.registerAttempt(dbConnection, userName, userPassword);
+                                        switch (registerStatus)
+                                        {
+                                            case("UNKNOWN"):
+                                                System.out.println("Error: unknown error occurred.\nTry again.");
+                                                break;
+                                            case("USERNAME_TAKEN"): //user not found
+                                                System.out.println("Error: username already taken.\nTry again.");
+                                                break;
+                                            case("ACCOUNT_CREATION_SUCCESS"):
+                                                System.out.println("Success.");
+                                                attemptingRegister=false;
+                                                break;
+                                        }
+                                    }
+                                }
+                            }
+                            catch (SQLException e)
+                            {
+                                System.out.println("Error: " + e);
+                            }
+                            break;
+                        case("-"):
+                            System.out.println("\nCurrent database configuration:\nURL: " + dbURL + "\nUser: " + dbUser + "\nPass: " + dbPass);
+                            System.out.println("\nReconfigure? (y/n)");
+                            System.out.print("Input: ");
+                            String userReconfig = input.next();
+                            String dbConfig;
+                            if(userReconfig.equalsIgnoreCase("y"))
+                            {
+                                System.out.println("\nInput your new configurations: ");
+                                
+                                System.out.print("URL: ");
+                                String newdbURL = input.next();
+
+                                System.out.print("User: ");
+                                String newdbUser = input.next();
+                                
+                                System.out.print("Pass: ");
+                                String newdbPass = input.next();
+
+                                System.out.println("\nNew database configuration:\nURL: " + newdbURL + "\nUser: " + newdbUser + "\nPass: " + newdbPass);
+                                System.out.println("\nConfirm changes? (y/n)");
+                                String userConfChanges = input.next();
+                                if(userConfChanges.equalsIgnoreCase("y"))
+                                {
+                                    dbURL = newdbURL;
+                                    dbUser = newdbUser;
+                                    dbPass = newdbPass;
                                 }
                                 else
                                 {
-                                    //System.out.println("Username: " + userName);
-                                    userPassword = passwordControl.inputPassword();
-                                    //System.out.println("Password: " + userPassword);
-
-                                    int loginStatus = accountLogin.loginAttempt(dbConnection, userName, userPassword);
-                                    switch (loginStatus)
-                                    {
-                                        case(0):
-                                            System.out.println("Error: unknown error occurred.\nTry again.");
-                                            break;
-                                        case(1): //user not found
-                                            System.out.println("Error: username not found.\nTry again.");
-                                            break;
-                                        case(2):
-                                            System.out.println("Error: password is incorrect.\nTry again.");
-                                            break;
-                                        case(3):
-                                            System.out.println("Success.");
-                                            attemptingLogin=false;
-                                            break;
-                                    }
+                                    System.out.println("Changes not saved.");
                                 }
                             }
                             break;
@@ -158,5 +241,55 @@ public class Demo
             }
         }
         while(running);
+    }
+    private static void printIntro()
+    {
+        System.out.println("""
+                     *@@,                       ,@@    \s
+                     *@@@@@@@@@@         @@@@@@@@@@    \s
+                 @@@ *@@@@@@@@@@@@@   @@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@ *@@@@@@@@@@@@@/ @@@@@@@@@@@@@@  @@@
+                @@@@    %@@@@@@@@@@/ @@@@@@@@@@@#    @@@
+                @@@@@@@@@.    @@@@@/ @@@@@%    /@@@@@@@@
+                """);
+
+        System.out.println("""
+                Welcome to Cookbook.
+                This project was brought to you by:
+
+                Team leader:
+                \t1. Aloysius Arno Wiputra
+                Team members:
+                \t1. Ruchira Bunga
+                \t2. Hetul Patel
+
+                Instructor\t: Dr. Frank Lee
+                Class\t\t: CSCI 455 - Senior Project
+                """);
+
+        printSupported();
+
+        System.out.println("\n------------------------------------------");
+    }
+    private static void printSupported()
+    {
+        Hashtable<Integer, String> supportedSites = new Hashtable<>();
+
+        supportedSites.put(0, "gimmesomeoven"); //fully supported, such a nice easy site
+        supportedSites.put(1, "playfulcooking"); //seems okay, after some tinkering
+        supportedSites.put(2, "thespruceeats"); //horrible support
+
+        System.out.println("Current supported sites: ");
+        for(int i=0; i<supportedSites.size(); i++)
+        {
+            System.out.println(i+1 + ") " + supportedSites.get(i));
+        }
     }
 }

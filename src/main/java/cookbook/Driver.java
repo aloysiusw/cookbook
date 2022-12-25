@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.sql.Connection;
 public class Driver
 {
-    public static void main(String[]args) throws Exception
+    public void Driver() throws Exception
     {
         //create new instances, maybe put in individual tests?
         DatabaseControl databaseControl = new DatabaseControl();
