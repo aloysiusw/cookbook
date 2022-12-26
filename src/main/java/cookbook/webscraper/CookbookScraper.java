@@ -4,20 +4,26 @@ import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.html.*;
 import org.apache.commons.lang3.StringUtils;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.sql.Connection;
 
 public class CookbookScraper
 {
     ArrayList<String> recipe = new ArrayList<>(); //chose ArrayList because faster to parse, only needs to be modified once.
     String recipeTitle;
+    String urlDomain;
 
-    public ArrayList scrapeLink(String url)
+    public ArrayList<String> scrapeLink(String url)
     {
         int elem;
-        int listLength;
         /*todo:
-            1. parse domain
-            2. make individual ways to scrape (1/3)
+            1. parse domain (ok)
+            2. make individual ways to scrape (3/3) (ok)
             3. more and more testing
          */
         this.recipe.clear(); //clean the recipe array list for every run
@@ -58,7 +64,7 @@ public class CookbookScraper
               */
             boolean elementNotNull = true;
 
-            String urlDomain = StringUtils.substringBetween(url, "https://www.", ".");
+            this.urlDomain = StringUtils.substringBetween(url, "https://www.", ".");
             System.out.println("Domain: " + urlDomain);
 
             switch(urlDomain)
@@ -78,7 +84,7 @@ public class CookbookScraper
                                 test = test.replace("\n","");
                                 //System.out.println(test);
                                 //String test = element.getAttribute("innerHTML");
-                                if (!test.contains("Recipe Tips"))
+                                if (!test.contains("Tips"))
                                 {
                                     recipe.add(test);
                                 }
@@ -159,18 +165,66 @@ public class CookbookScraper
         {
             System.out.println("Exception: " + e);
         }
-        if(!recipe.isEmpty())
-        {
-            System.out.println("\nRecipe:");
-            listLength = this.recipe.size();
-            for (int i = 0; i < listLength; i++)
-            {
-                System.out.print(i + 1 + ") " + this.recipe.get(i) + "\n");
-            }
-        }
+        //printRecipe(recipe);
         return recipe;
     }
-    public void fileRecipe()
+    public void printRecipe(ArrayList currRecipe)
     {
+        if(!currRecipe.isEmpty())
+        {
+            System.out.println("\nRecipe:");
+            int listLength = currRecipe.size();
+            for (int i = 0; i < listLength; i++)
+            {
+                System.out.print(i + 1 + ") " + currRecipe.get(i) + "\n");
+            }
+        }
+    }
+    public String fileRecipe(ArrayList filedRecipe, String user, Connection dbConnection)
+    {
+        String resultCode = "";
+        try
+        {
+            Statement stm = dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            String queryCheckData = "SELECT RECIPE_ID FROM RECIPES WHERE RECIPE_TITLE='" + recipeTitle + "'";
+            ResultSet queryCheckIfFilled = stm.executeQuery(queryCheckData);
+            if (queryCheckIfFilled.next())
+            {
+                resultCode = "RECIPE_EXISTS";
+            }
+            else
+            {
+                int listLength = filedRecipe.size();
+                String currentFiled = "";
+                String nextFiled;
+                for (int i = 0; i < listLength; i++)
+                {
+                    if (!currentFiled.equals(""))
+                    {
+                        nextFiled = filedRecipe.get(i).toString();
+                        currentFiled = currentFiled + "@" + nextFiled;
+                    }
+                    else
+                    {
+                        currentFiled = filedRecipe.get(i).toString();
+                    }
+                }
+                String queryFile = "INSERT INTO RECIPES(SOURCE_USER,RECIPE_TITLE,RECIPE_SOURCE,RECIPE_CONTENT) VALUES ('" + user + "','" + recipeTitle + "','" + urlDomain + "','" + currentFiled + "')";
+                stm.executeUpdate(queryFile);
+                resultCode = "RECIPE_ADDED";
+            }
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+        return resultCode;
+    }
+    public ArrayList<String> splitFiled(String filedRecipe)
+    {
+        String splitRaw[] = filedRecipe.split("@");
+        List<String> splitRecipe = new ArrayList<>(Arrays.asList(splitRaw));
+        return (ArrayList<String>) splitRecipe;
     }
 }

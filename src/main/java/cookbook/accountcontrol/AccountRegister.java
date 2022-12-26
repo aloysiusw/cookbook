@@ -36,8 +36,8 @@ public class AccountRegister
                     //System.out.println("B");
                     stm.executeUpdate(queryInsertData);
                     //System.out.println("C");
-                    ResultSet queryCheckAgain = stm.executeQuery(queryCheckData);
-                    if (queryCheckAgain.next())
+                    ResultSet queryCheckAgain = stm.executeQuery(queryCheckData); //check if user exists
+                    if (queryCheckAgain.next()) //if it exists, then it's true that next value exist
                     {
                         result = "ACCOUNT_CREATION_SUCCESS";
                     }
