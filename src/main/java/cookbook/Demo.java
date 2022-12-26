@@ -6,29 +6,33 @@ import cookbook.dbconnection.DatabaseControl;
 import cookbook.webscraper.CookbookScraper;
 import cookbook.accountcontrol.PasswordControl;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.sql.Connection;
+
+import de.vandermeer.asciitable.AsciiTable;
 
 public class Demo
 {
     /*todo (must haves):
         1. Functional web scraper that works on >=3 different websites (ok)
         2. Database for recipe storage and unique ID for each recipe (ok)
-        3. Driver program with read and write control for the database, with input sanitation (ok)
+        3. Driver program with read and write control for the database, with input sanitation (ok, partially)
         4. Version control integration (ok)
         5. Cloud database hosting
         6. Configure db in app (ok)
-        7. Admin access
+        7. Admin access (ok)
      */
-    static CookbookScraper cookbookScraper = new CookbookScraper();
-    static PasswordControl passwordControl = new PasswordControl();
-    static DatabaseControl databaseControl = new DatabaseControl();
+    final static CookbookScraper cookbookScraper = new CookbookScraper();
+    final static PasswordControl passwordControl = new PasswordControl();
+    final static DatabaseControl databaseControl = new DatabaseControl();
 
-    static AccountLogin accountLogin = new AccountLogin();
-    static AccountRegister accountRegister = new AccountRegister();
+    final static AccountLogin accountLogin = new AccountLogin();
+    final static AccountRegister accountRegister = new AccountRegister();
 
     static Scanner input = new Scanner(System.in);
     static String kbInput;
@@ -36,6 +40,7 @@ public class Demo
     static String dbURL = "localhost:3306/cookbook";
     static String dbUser = "root";
     static String dbPass = "pass";
+
 
     static boolean loggedIn = false;
 
@@ -192,83 +197,75 @@ public class Demo
         {
             System.out.println("Input is invalid. Please try again.");
         }
+        if(loggedIn)
+        {
+            nextStage="STAGE_THREE";
+        }
         return nextStage;
     }
     private static String StageTwo()
     {
         System.out.println("\nIf you would like to retrieve your existing recipes or save them, please log in. If you do not have an account, feel free to make one.\n");
-        System.out.println("Options:\n(0) Back\n(1) Log in/out\n(2) Sign up\n(-) Configure database connection");
+        System.out.println("Options:\n(0) Back\n(1) Log in\n(2) Sign up\n(-) Configure database connection");
 
         System.out.print("\nInput: ");
         String optInput = input.next();
         switch (optInput)
         {
+            case("exit"):
+            {
+                nextStage = "STAGE_EXIT";
+                break;
+            }
             case("0"):
                 nextStage = "STAGE_ONE";
                 break;
             case("1"):
-                if(loggedIn)
+                boolean attemptingLogin = true;
+                System.out.println("\nYou have opted to log in.\nInput '0' to cancel.");
+                try
                 {
-                    userName=null;
-                    userPassword=null;
-                    loggedIn=false;
-                    try
+                    dbConnection = databaseControl.establishConnection(dbURL, dbUser, dbPass);
+                    while (attemptingLogin)
                     {
-                        dbConnection.close();
-                    }
-                    catch(SQLException e)
-                    {
-                        System.out.println(e);
-                    }
-                }
-                else
-                {
-                    boolean attemptingLogin = true;
-                    System.out.println("\nYou have opted to log in.\nInput '0' to cancel.");
-                    try
-                    {
-                        dbConnection = databaseControl.establishConnection(dbURL, dbUser, dbPass);
-                        while (attemptingLogin)
+                        System.out.print("\nPlease input your username.\nInput: ");
+                        userName = input.next();
+                        if (userName.equals("0"))
                         {
-                            System.out.print("\nPlease input your username.\nInput: ");
-                            userName = input.next();
-                            if (userName.equals("0"))
+                            attemptingLogin = false;
+                        }
+                        else
+                        {
+                            //System.out.println("Username: " + userName);
+                            userPassword = passwordControl.inputPassword();
+                            //System.out.println("Password: " + userPassword);
+                            String loginStatus = accountLogin.loginAttempt(dbConnection, userName, userPassword);
+                            switch (loginStatus)
                             {
-                                attemptingLogin = false;
-                            }
-                            else
-                            {
-                                //System.out.println("Username: " + userName);
-                                userPassword = passwordControl.inputPassword();
-                                //System.out.println("Password: " + userPassword);
-                                String loginStatus = accountLogin.loginAttempt(dbConnection, userName, userPassword);
-                                switch (loginStatus)
-                                {
-                                    case ("USER_NOT_FOUND"): //user not found
-                                        System.out.println("Error: username not found.\nTry again.");
-                                        break;
-                                    case ("PASSWORD_INCORRECT"):
-                                        System.out.println("Error: password is incorrect.\nTry again.");
-                                        break;
-                                    case ("ADMIN"):
-                                    case ("USER"):
-                                        accountType = loginStatus;
-                                        loggedIn = true;
-                                        System.out.println("Successfully logged in, logged in as '" + userName + "'.");
-                                        attemptingLogin = false;
-                                        nextStage="STAGE_THREE";
-                                        break;
-                                    default:
-                                        System.out.println("Error: unknown error occurred.\nTry again.");
-                                        break;
-                                }
+                                case ("USER_NOT_FOUND"): //user not found
+                                    System.out.println("Error: username not found.\nTry again.");
+                                    break;
+                                case ("PASSWORD_INCORRECT"):
+                                    System.out.println("Error: password is incorrect.\nTry again.");
+                                    break;
+                                case ("ADMIN"):
+                                case ("USER"):
+                                    accountType = loginStatus;
+                                    loggedIn = true;
+                                    System.out.println("Successfully logged in, logged in as '" + userName + "'.");
+                                    attemptingLogin = false;
+                                    nextStage="STAGE_THREE";
+                                    break;
+                                default:
+                                    System.out.println("Error: unknown error occurred.\nTry again.");
+                                    break;
                             }
                         }
                     }
-                    catch (SQLException e)
-                    {
-                        System.out.println("Error: " + e);
-                    }
+                }
+                catch (SQLException e)
+                {
+                    System.out.println("Error: " + e);
                 }
                 break;
             case("2"):
@@ -300,6 +297,7 @@ public class Demo
                                     System.out.println("Successfully registered, logged in as '" + userName + "'.");
                                     loggedIn=true;
                                     attemptingRegister=false;
+                                    accountType="USER";
                                     nextStage="STAGE_THREE";
                                     break;
                                 case("REGISTRATION_CANCELLED"):
@@ -375,12 +373,239 @@ public class Demo
     private static String StageThree()
     {
         /*todo:
-            1. retrieve recipe (go through resultset, see if it contains string)
-            2. save recipe (go back to stage one)
-            3. log out (nullify values, go back to stage two)
-            4. if admin, see stats, user tables, promote to admin
+            1. retrieve recipe (go through resultset, see if it contains string), print ascii table? (ok)
+            2. print all recipes saved (id, title, domain source) (ok)
+            2. save recipe (go back to stage one) (ok)
+            3. log out (nullify values, go back to stage two) (ok)
+            4. if admin, see user tables, promote to admin
          */
-        System.out.println();
+
+        System.out.println("\nWelcome, " + userName + ".");
+        System.out.println("\nAvailable commands: \n(1) Search saved recipes\n(2) See all recipes\n(3) Add new recipes\n(4) Log out");
+        if(accountType.equalsIgnoreCase("Admin"))
+        {
+            System.out.println("(5) See list of users\n(6) Switch user account privilege");
+        }
+        System.out.print("\nInput: ");
+        String s3Input = input.next();
+        switch(s3Input)
+        {
+            case("exit"):
+            {
+                nextStage = "STAGE_EXIT";
+                break;
+            }
+            case("1"): //search recipes
+            {
+                System.out.println("\nYou can search by title or recipe ID.");
+                System.out.print("\nInput: ");
+                kbInput = input.next();
+                if(kbInput.matches("^[0-9]*$")) //if it's number, then search by ID
+                {
+                    try
+                    {
+                        Statement stm = dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        String queryOptOneID = "SELECT RECIPE_TITLE, RECIPE_SOURCE, RECIPE_CONTENT FROM RECIPES WHERE SOURCE_USER = '" + userName + "' AND RECIPE_ID = '" + kbInput + "'";
+                        ResultSet optOneIDResult = stm.executeQuery(queryOptOneID);
+                        if(optOneIDResult.next())
+                        {
+                            optOneIDResult.first();
+                            String recipeToParseRaw = optOneIDResult.getString("RECIPE_CONTENT"); //returned file is in raw format
+                            recipeScraped = cookbookScraper.splitFiled(recipeToParseRaw); //splits the text into array list
+                            cookbookScraper.printRecipe(recipeScraped);
+                        }
+                        else
+                        {
+                            System.out.println("\nNo result found.");
+                        }
+                    }
+                    catch(SQLException e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        Statement stm = dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        String queryOptOneTitle = "SELECT RECIPE_TITLE, RECIPE_SOURCE, RECIPE_CONTENT FROM RECIPES WHERE RECIPE_TITLE LIKE '%" + kbInput + "%'";
+                        String queryGetCount = "SELECT COUNT * FROM RECIPES WHERE RECIPE_TITLE LIKE '%" + kbInput + "%'";
+                        ResultSet optOneCount = stm.executeQuery(queryGetCount);
+                        int count = optOneCount.getInt(1);
+                        System.out.println(count);
+                        if(count!=0)
+                        {
+                            ResultSet optOneTitleResult = stm.executeQuery(queryOptOneTitle);
+                            if (count == 1)
+                            {
+                                System.out.println("\nTitle: " + optOneTitleResult.getString("RECIPE_TITLE"));
+                                System.out.println("\nSource: " + optOneTitleResult.getString("RECIPE_SOURCE"));
+                                optOneTitleResult.first();
+                                String recipeToParseRaw = optOneTitleResult.getString("RECIPE_CONTENT"); //returned file is in raw format
+                                recipeScraped = cookbookScraper.splitFiled(recipeToParseRaw); //splits the text into array list
+                                cookbookScraper.printRecipe(recipeScraped);
+                            }
+                            else if (count > 1)
+                            {
+                                AsciiTable optOneTable = new AsciiTable();
+                                optOneTable.addRule();
+                                optOneTable.addRow("ID", "TITLE","SOURCE");
+                                optOneTable.addRule();
+                                while(optOneTitleResult.next())
+                                {
+                                    optOneTable.addRow(optOneTitleResult.getString("RECIPE_ID"),optOneTitleResult.getString("RECIPE_TITLE"),optOneTitleResult.getString("RECIPE_SOURCE"));
+                                    optOneTable.addRule();
+                                }
+                                String optOneTitleResultPrint = optOneTable.render();
+                                System.out.println(optOneTitleResultPrint);
+                            }
+                        }
+                        else
+                        {
+                            System.out.println("\nNo result found.");
+                        }
+                    }
+                    catch(SQLException e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+                break;
+            }
+            case("2"): //see all
+            {
+                try
+                {
+                    Statement stm = dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    String queryOptTwo = "SELECT RECIPE_ID, RECIPE_TITLE, RECIPE_SOURCE FROM RECIPES WHERE SOURCE_USER = '" + userName + "'";
+                    ResultSet optTwoResult = stm.executeQuery(queryOptTwo);
+
+                    AsciiTable optTwoTable = new AsciiTable();
+                    optTwoTable.addRule();
+                    optTwoTable.addRow("ID", "TITLE","SOURCE");
+                    optTwoTable.addRule();
+                    while(optTwoResult.next())
+                    {
+                        optTwoTable.addRow(optTwoResult.getString("RECIPE_ID"),optTwoResult.getString("RECIPE_TITLE"),optTwoResult.getString("RECIPE_SOURCE"));
+                        optTwoTable.addRule();
+                    }
+                    String optTwoTablePrnt = optTwoTable.render();
+                    System.out.println(optTwoTablePrnt);
+                }
+                catch(SQLException e)
+                {
+                    System.out.println(e);
+                }
+                break;
+            }
+            case("3"): //add new
+            {
+                nextStage = "STAGE_ONE";
+                break;
+            }
+            case("4"): //log out
+            {
+                System.out.println("\nConfirm log out? (y/n)");
+                System.out.print("Input: ");
+                kbInput = input.next();
+                if(kbInput.equalsIgnoreCase("y"))
+                {
+                    userName=null;
+                    userPassword=null;
+                    loggedIn=false;
+                    try
+                    {
+                        dbConnection.close();
+                    }
+                    catch(SQLException e)
+                    {
+                        System.out.println(e);
+                    }
+                    nextStage="STAGE_TWO";
+                }
+                break;
+            }
+            case("5"): //admin, see user list
+            {
+                if(accountType.equalsIgnoreCase("Admin"))
+                {
+                    try
+                    {
+                        Statement stm = dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                        String query = "SELECT * FROM USER_ACCOUNT";
+                        ResultSet resultQuery = stm.executeQuery(query);
+
+                        AsciiTable userList = new AsciiTable();
+                        userList.addRule();
+                        userList.addRow("USERS", "TYPE", "PASSWORD");
+                        userList.addRule();
+                        while (resultQuery.next())
+                        {
+                            userList.addRow(resultQuery.getString("USER_NAME"), resultQuery.getString("USER_TYPE"),resultQuery.getString("USER_PASSWORD"));
+                            userList.addRule();
+                        }
+                        String userListTable = userList.render();
+                        System.out.println(userListTable);
+                    }
+                    catch (SQLException e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+                break;
+            }
+            case("6"): //admin, promote userf
+            {
+                if(accountType.equalsIgnoreCase("Admin"))
+                {
+                    System.out.println("\nInput the user to switch account type.");
+                    System.out.print("\nInput: ");
+                    String userElevate = input.next();
+                    try
+                    {
+                        Statement stm = dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+                        String query = "SELECT USER_TYPE FROM USER_ACCOUNT WHERE USER_NAME = '" + userElevate + "'";
+                        ResultSet resultQuery = stm.executeQuery(query);
+                        if(resultQuery.next())
+                        {
+                            resultQuery.first();
+                            String resultType = resultQuery.getString("USER_TYPE");
+
+                            System.out.println("User '" + userElevate + "' = " + resultType);
+                            System.out.println("Switch types? (y/n)");
+                            System.out.print("\nInput: ");
+                            kbInput = input.next();
+                            if(kbInput.equalsIgnoreCase("y"))
+                            {
+                                if(resultType.equalsIgnoreCase("admin"))
+                                {
+                                    resultType="USER";
+                                }
+                                else if(resultType.equalsIgnoreCase("user"))
+                                {
+                                    resultType="ADMIN";
+                                }
+                                String querySwitch = "UPDATE USER_ACCOUNT SET USER_TYPE='" + resultType + "' WHERE USER_NAME='" + userElevate + "'";
+                                stm.executeUpdate(querySwitch);
+                            }
+                        }
+                        else
+                        {
+                            System.out.println("User not found.");
+                        }
+
+                    }
+                    catch (SQLException e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+                break;
+            }
+        }
+
         return nextStage;
     }
     private static void sendRecipe()

@@ -210,7 +210,7 @@ public class CookbookScraper
                         currentFiled = filedRecipe.get(i).toString();
                     }
                 }
-                String queryFile = "INSERT INTO RECIPES(SOURCE_USER,RECIPE_TITLE,RECIPE_SOURCE,RECIPE_CONTENT) VALUES ('" + user + "','" + recipeTitle + "','" + urlDomain + "','" + currentFiled + "')";
+                String queryFile = "INSERT INTO RECIPES(SOURCE_USER,RECIPE_TITLE,RECIPE_SOURCE,RECIPE_CONTENT) VALUES ('" + user + "','" + recipeTitle + "','" + urlDomain + "',\"" + currentFiled + "\")";
                 stm.executeUpdate(queryFile);
                 resultCode = "RECIPE_ADDED";
             }
