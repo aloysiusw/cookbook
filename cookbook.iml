@@ -10,6 +10,5 @@
     <orderEntry type="library" name="mysql-connector-j-8.0.31" level="project" />
     <orderEntry type="library" name="net.sourceforge.htmlunit" level="project" />
     <orderEntry type="library" name="de.vandermeer.asciitable" level="project" />
-    <orderEntry type="library" name="microsoft.sqlserver.mssql.jdbc" level="project" />
   </component>
 </module>

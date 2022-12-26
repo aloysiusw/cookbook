@@ -35,7 +35,7 @@ public class DatabaseControl
         {
             System.out.println("Error in establishing connection: " + e);
         }
-        System.out.println(dbConnection);
+        //System.out.println(dbConnection);
         if(dbConnection != null)
         {
             return dbConnection;
