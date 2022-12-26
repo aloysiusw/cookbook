@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class AccountRegister
 {
@@ -20,21 +21,34 @@ public class AccountRegister
         try
         {
             Statement stm = dbConnection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            String queryCheckData = ("SELECT USER_NAME FROM USER_ACCOUNT WHERE USER_NAME='" + name + "'");
+            String queryCheckData = "SELECT USER_NAME FROM USER_ACCOUNT WHERE USER_NAME='" + name + "'";
             ResultSet queryCDResult = stm.executeQuery(queryCheckData);
-            if(queryCDResult.next())
+            //System.out.println("A");
+            if(!queryCDResult.next())
             {
-                String queryInsertData = "INSERT INTO USER_ACCOUNT(USER_NAME,USER_PASSWORD,USER_TYPE)VALUES('" + userName + "','" + userPassword + "','" + "'USER'"; //create account
-                stm.executeQuery(queryInsertData);
-                ResultSet queryCheckAgain = stm.executeQuery(queryCheckData);
-                if(!queryCheckAgain.next())
+                System.out.println("Username available. Confirm account creation? (y/n)");
+                System.out.print("Input: ");
+                Scanner input = new Scanner(System.in);
+                String regInput = input.next();
+                if(regInput.equalsIgnoreCase("y"))
                 {
-                    System.out.println("Success.");
-                    result = "ACCOUNT_CREATION_SUCCESS";
+                    String queryInsertData = "INSERT INTO USER_ACCOUNT(USER_NAME,USER_PASSWORD,USER_TYPE) VALUES('" + userName + "','" + userPassword + "','USER')"; //create account
+                    //System.out.println("B");
+                    stm.executeUpdate(queryInsertData);
+                    //System.out.println("C");
+                    ResultSet queryCheckAgain = stm.executeQuery(queryCheckData);
+                    if (queryCheckAgain.next())
+                    {
+                        result = "ACCOUNT_CREATION_SUCCESS";
+                    }
+                    else
+                    {
+                        System.out.println("An error occurred.");
+                    }
                 }
                 else
                 {
-                    System.out.println("An error occurred.");
+                    result="REGISTRATION_CANCELLED";
                 }
             }
             else

@@ -38,7 +38,7 @@ public class Demo
         boolean running = true;
         boolean stageOne = true; //recipe scraper, input link
         boolean stageTwo = false; //logging in and sign up
-        boolean stageThree = false;
+        boolean stageThree = false; //saving and retrieving recipe
 
         boolean loggedIn = false;
         boolean savedRecipe = false;
@@ -134,9 +134,6 @@ public class Demo
                                         String loginStatus = accountLogin.loginAttempt(dbConnection, userName, userPassword);
                                         switch (loginStatus)
                                         {
-                                            case("UNKNOWN"):
-                                                System.out.println("Error: unknown error occurred.\nTry again.");
-                                                break;
                                             case("USER_NOT_FOUND"): //user not found
                                                 System.out.println("Error: username not found.\nTry again.");
                                                 break;
@@ -148,6 +145,9 @@ public class Demo
                                                 accountType = loginStatus;
                                                 System.out.println("Success.");
                                                 attemptingLogin=false;
+                                                break;
+                                            default:
+                                                System.out.println("Error: unknown error occurred.\nTry again.");
                                                 break;
                                         }
                                     }
@@ -181,9 +181,6 @@ public class Demo
                                         String registerStatus = accountRegister.registerAttempt(dbConnection, userName, userPassword);
                                         switch (registerStatus)
                                         {
-                                            case("UNKNOWN"):
-                                                System.out.println("Error: unknown error occurred.\nTry again.");
-                                                break;
                                             case("USERNAME_TAKEN"): //user not found
                                                 System.out.println("Error: username already taken.\nTry again.");
                                                 break;
@@ -191,6 +188,14 @@ public class Demo
                                                 System.out.println("Success.");
                                                 attemptingRegister=false;
                                                 break;
+                                            case("REGISTRATION_CANCELLED"):
+                                                System.out.println("Account creation aborted.");
+                                                break;
+                                            default:
+                                            {
+                                                System.out.println("Error: unknown error occurred.\nTry again.");
+                                                break;
+                                            }
                                         }
                                     }
                                 }
@@ -242,6 +247,12 @@ public class Demo
         }
         while(running);
     }
+    private static String StageOne()
+    {
+        String stageOneTransition = null;
+
+        return stageOneTransition;
+    }
     private static void printIntro()
     {
         System.out.println("""
@@ -284,7 +295,7 @@ public class Demo
 
         supportedSites.put(0, "gimmesomeoven"); //fully supported, such a nice easy site
         supportedSites.put(1, "playfulcooking"); //seems okay, after some tinkering
-        supportedSites.put(2, "thespruceeats"); //horrible support
+        supportedSites.put(2, "thespruceeats"); //not terribly effective, only works with some links
 
         System.out.println("Current supported sites: ");
         for(int i=0; i<supportedSites.size(); i++)
