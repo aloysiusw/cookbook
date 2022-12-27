@@ -135,6 +135,7 @@
             supportedSites.put(0, "gimmesomeoven"); //fully supported, such a nice easy site
             supportedSites.put(1, "playfulcooking"); //seems okay, after some tinkering
             supportedSites.put(2, "thespruceeats"); //not terribly effective, only works with some links
+            supportedSites.put(3, "thestayathomechef");
     
             System.out.println("Current supported sites: ");
             for(int i=0; i<supportedSites.size(); i++)

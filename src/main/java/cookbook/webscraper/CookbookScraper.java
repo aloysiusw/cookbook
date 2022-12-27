@@ -65,6 +65,10 @@ public class CookbookScraper
             boolean elementNotNull = true;
 
             this.urlDomain = StringUtils.substringBetween(url, "https://www.", ".");
+            if(urlDomain==null)
+            {
+                this.urlDomain = StringUtils.substringBetween(url,"https://", ".");
+            }
             System.out.println("Domain: " + urlDomain);
 
             switch(urlDomain)
@@ -122,27 +126,48 @@ public class CookbookScraper
                     }
                     break;
                 case "playfulcooking": //this one has different structures for its recipe, requires unique ID
-                    elem = 1;
+                    elem = 0;
                     while (elementNotNull)
                     {
+                        ////*[@id="wprm-recipe-23597-step-0-0"]
                         // //*[@id="wprm-recipe-23513-step-0-0"] //*[@id="wprm-recipe-23545-step-0-0"]
                         // /html/body/div[1]/div/div/div/article/div[3]/div[2]/div[2]/div/div[10]/div/ul/li[1]/div
                         // /html/body/div[1]/div/div/div/article/div[3]/div[2]/div[2]/div/div[10]/div/ul/li[2]/div
-
                         // /html/body/div[1]/div/div/div/article/div[3]/div[4]/div/div[12]/div/ul/li[1]/div/span
-
                         //String xPath = "/html/body/div[1]/div/div/div/article/div[3]/div[2]/div[2]/div/div[10]/div/ul/li[" + elem + "]/div";
 
                         //*[@id="wprm-recipe-container-23545"]
-
                         DomElement testElem = htmlPage.getFirstByXPath("//*[@data-recipe-id]");
                         String valueID = testElem.getAttribute("data-recipe-id");
                         //System.out.println(valueID); //this took so much time
+
                         String xPath = "//*[@id=\"wprm-recipe-" + valueID + "-step-0-" + elem + "\"]";
                         DomElement element = htmlPage.getFirstByXPath(xPath); //use xpath
                         //*[@id="wprm-recipe-23545-step-0-0"]
                         //*[@id="wprm-recipe-23545-step-0-0"]/div/span/text()
 
+                        if (element != null)
+                        {
+                            String test = element.getTextContent();
+                            test = test.trim();
+                            test = test.replace("\n","");
+                            this.recipe.add(test);
+                        }
+                        else
+                        {
+                            elementNotNull = false;
+                        }
+                        elem++;
+                    }
+                    break;
+                case "thestayathomechef": //most straightforward one
+                    elem = 0;
+                    while (elementNotNull)
+                    {
+                        DomElement testElem = htmlPage.getFirstByXPath("//*[@data-recipe-id]");
+                        String valueID = testElem.getAttribute("data-recipe-id");
+                        String xPath = "//*[@id=\"wprm-recipe-" + valueID + "-step-0-" + elem + "\"]";
+                        DomElement element = htmlPage.getFirstByXPath(xPath); //use xpath
                         if (element != null)
                         {
                             String test = element.getTextContent();
@@ -224,7 +249,7 @@ public class CookbookScraper
     public ArrayList<String> splitFiled(String filedRecipe)
     {
         String splitRaw[] = filedRecipe.split("@");
-        List<String> splitRecipe = new ArrayList<>(Arrays.asList(splitRaw));
-        return (ArrayList<String>) splitRecipe;
+        ArrayList<String> splitRecipe = new ArrayList<>(Arrays.asList(splitRaw));
+        return splitRecipe;
     }
 }
