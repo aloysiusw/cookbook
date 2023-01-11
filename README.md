@@ -1,5 +1,8 @@
 # Cookbook
 
+![image](https://user-images.githubusercontent.com/48269287/211882522-69ee4458-f058-45fd-ab6c-6a5b30af0b71.png)
+
+
 This project was developed for CSCI 455 - Senior Project under the guidance of Dr. Frank Lee. The main goal of this project was to write a software that is able to extract only the instructions of certain recipe websites.
 
 The software utilizes targeted scraping, working only on certain whitelisted domains of which unique methods of extraction were written for, as different websites have different layouts in the way they display data.
