@@ -7,6 +7,8 @@ This project was developed for CSCI 455 - Senior Project under the guidance of D
 
 The software utilizes targeted scraping, working only on certain whitelisted domains of which unique methods of extraction were written for, as different websites have different layouts in the way they display data.
 
+A more complete breakdown of the project can be found in both the presentation file and the final report. Both are included in this repo, along with all the other documents that were created, including proposals, design documents, weekly reports, etc. The css and html file created by Ruchira Bunga was also included, as a future reference if it can be implemented in later versions.
+
 # How it works
 
 ![image](https://user-images.githubusercontent.com/48269287/211867496-cb46e70d-1de4-4425-a7ca-4cd251a29230.png)
@@ -19,3 +21,4 @@ The basic structure of the driver program is listed above, depicted in three sta
 A more complete flowchart of the program flow can be found below:
 
 ![image](https://user-images.githubusercontent.com/48269287/211869491-80136a9e-7531-4a23-a0af-19b1f89e546c.png)
+
